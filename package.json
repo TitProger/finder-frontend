@@ -1,0 +1,15 @@
+{
+  "name": "finder-frontend",
+  "private": true,
+  "workspaces": ["app/*", "shared/*"],
+  "version": "0.0.1",
+  "description": "Клиентский сайт Finder.",
+  "scripts": {
+    "contract:sync": "bash scripts/contract-sync.sh",
+    "build": "npm run build -w site"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2",
+    "vite-tsconfig-paths": "^6.1.1"
+  }
+}

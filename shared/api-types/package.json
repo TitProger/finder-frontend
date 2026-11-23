@@ -1,0 +1,12 @@
+{
+  "name": "@shared/api-types",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Реэкспорт типов из shared/api/generated/types",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts"
+  }
+}

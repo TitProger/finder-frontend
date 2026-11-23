@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@shared/api": ["./shared/api/src/index.ts"],
+      "@shared/api-types": ["./shared/api-types/index.ts"]
+    }
+  }
+}
