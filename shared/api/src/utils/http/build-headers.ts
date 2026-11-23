@@ -11,7 +11,7 @@ export function buildHeaders(
   const headers: HttpHeaders = {};
   const hasBody = options.body != null && options.body !== "";
 
-  if (hasBody) {
+  if (hasBody && !(options.body instanceof FormData)) {
     headers["Content-Type"] = "application/json";
   }
 

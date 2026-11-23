@@ -115,6 +115,42 @@ export class ApiClient {
     return this.executePost(pathFn, data, params);
   }
 
+  async postUnwrapped<TResult>(
+    pathFn: string,
+    unwrapper: (response: unknown) => TResult,
+    data?: unknown,
+  ): Promise<TResult>;
+  async postUnwrapped<TResult, TParams extends PathParams = PathParams>(
+    pathFn: (params: TParams) => string,
+    unwrapper: (response: unknown) => TResult,
+    data: unknown | undefined,
+    params: TParams,
+  ): Promise<TResult>;
+  async postUnwrapped<TResult, TParams extends PathParams = PathParams>(
+    pathFn: PathFn<TParams>,
+    unwrapper: (response: unknown) => TResult,
+    data?: unknown,
+    params?: TParams,
+  ): Promise<TResult> {
+    const response = await this.executePost(pathFn, data, params);
+
+    return unwrapper(response);
+  }
+
+  /** Multipart без Content-Type: boundary ставит браузер. */
+  async postFormUnwrapped<TResult>(
+    pathFn: string,
+    unwrapper: (response: unknown) => TResult,
+    form: FormData,
+  ): Promise<TResult> {
+    const response = await this.request(resolvePath(pathFn), {
+      method: "POST",
+      body: form,
+    });
+
+    return unwrapper(response);
+  }
+
   async put<T = unknown>(pathFn: string, data?: unknown): Promise<T>;
   async put<T = unknown, TParams extends PathParams = PathParams>(
     pathFn: (params: TParams) => string,

@@ -298,6 +298,7 @@ function Card({
                   </li>
                 ))}
               </ul>
+              <p className="margin-disclaimer">Оценка с учётом расходов, не факт прибыли.</p>
             </article>
           ) : null}
 
